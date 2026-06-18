@@ -1,44 +1,42 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { ROUTES_HOME, ROUTES_AUTH } from '@/constants/routes'
 import HomeLayout from '@/components/layouts/HomeLayout.vue'
 import AuthLayout from '@/components/layouts/AuthLayout.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    // Пути home
     {
-      path: '/',
+      path: ROUTES_HOME.ROOT.path,
       component: HomeLayout,
       children: [
         {
           path: '',
-          name: 'home',
+          name: ROUTES_HOME.HOME.name,
           component: () => import('@/views/Home/HomePage.vue'),
         },
         {
-          path: 'about',
-          name: 'about',
+          path: ROUTES_HOME.ABOUT.path,
+          name: ROUTES_HOME.ABOUT.name,
           component: () => import('@/views/Home/AboutPage.vue'),
         },
       ],
     },
+
+    // Пути auth
     {
-      path: '/login',
+      path: ROUTES_HOME.ROOT.path,
       component: AuthLayout,
       children: [
         {
-          path: '',
-          name: 'login',
+          path: ROUTES_AUTH.LOGIN.path,
+          name: ROUTES_AUTH.LOGIN.name,
           component: () => import('@/views/Auth/LoginPage.vue'),
         },
-      ],
-    },
-    {
-      path: '/registration',
-      component: AuthLayout,
-      children: [
         {
-          path: '',
-          name: 'registration',
+          path: ROUTES_AUTH.REGISTRATION.path,
+          name: ROUTES_AUTH.REGISTRATION.name,
           component: () => import('@/views/Auth/RegistrationPage.vue'),
         },
       ],
